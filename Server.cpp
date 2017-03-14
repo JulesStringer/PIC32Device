@@ -46,7 +46,7 @@ void Server::InitialiseDevices()
 void Server::Run()
 {
     InitialiseBoard();
-    InitialiseSPI2();
+    //InitialiseSPI2();
     m_UART1.Initialise(19200);
     TickInit();
     
@@ -63,20 +63,19 @@ void Server::SetLevel(unsigned char nDevice, unsigned char nLevel)
 {
     if ( nDevice >= 1 && nDevice <= m_nMaxDevice)
     {
-        m_Devices[nDevice-1].m_pHandler->SetLevel(nLevel);
+        m_Devices[nDevice-1]->SetLevel(nLevel);
     }
 }
 void Server::SendReading(IODevice* pDevice, unsigned char byCommand, unsigned char nDevice)
 {
     if ( nDevice >= 1 && nDevice <= m_nMaxDevice)
     {
-        m_Devices[nDevice-1].m_pHandler->SendReading(pDevice, byCommand, nDevice);
+        m_Devices[nDevice-1]->SendReading(pDevice, byCommand, nDevice);
     }
 }
 // TODO write interrupt handlers
-void Server::AddDevice(unsigned char nChannel, ControlledDevice* pDevice)
+void Server::AddDevice(ControlledDevice* pDevice)
 {
-    m_Devices[m_nMaxDevice].m_nChannel = nChannel;
-    m_Devices[m_nMaxDevice].m_pHandler = pDevice;
+    m_Devices[m_nMaxDevice] = pDevice;
     m_nMaxDevice++;
 }

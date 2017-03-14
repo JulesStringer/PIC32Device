@@ -20,38 +20,26 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
- * File:   Server.h
+ * File:   SPI2.h
  * Author: jules
  *
- * Created on 05 November 2016, 22:56
+ * Created on 14 March 2017, 16:49
  */
 
-#ifndef SERVER_H
-#define	SERVER_H
-#include "hardwareprofile.h"
-#include "ControlledDevice.h"
-#include "CommandParser.h"
-#include "UART1.h"
+#ifndef SPI2_H
+#define	SPI2_H
 
-#define MAX_DEVICE 6
-
-class Server 
-{
+class SPI2 {
 public:
-    Server();
-    Server(const Server& orig);
-    virtual ~Server();
-    virtual void Run();
-    void SetLevel(unsigned char nDevice, unsigned char nLevel);
-    void SendReading(IODevice* pDevice, unsigned char byCommand, unsigned char nDevice);
-protected:
-    ControlledDevice* m_Devices[MAX_DEVICE];
-    virtual void InitialiseDevices();
-    virtual void AddDevice(ControlledDevice* pDevice);
-    UART1 m_UART1;
-    CommandParser m_commandParser;
-    unsigned int m_nMaxDevice;
+    SPI2();
+    SPI2(const SPI2& orig);
+    virtual ~SPI2();
+    virtual void Initialise();
+    virtual void InitialiseRPR();
+    unsigned long Put(unsigned long buf);
+private:
+
 };
-extern "C" void RunServer();
-#endif	/* SERVER_H */
+
+#endif	/* SPI2_H */
 

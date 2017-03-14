@@ -58,28 +58,7 @@ extern "C" {
 #define BRG_DIV1        4 
 #define BRGH1           1 
 
-    
-// POT SDI
-#define SPI2_SDI_TRIS      (TRISBbits.TRISB8)
-#define SPI2_SDI_ANSEL     (PRODL)
-#define SPI2_SDI_RPR       (RPINR11bits.SDI2R)
-#define SPI2_SDI_RPRVAL    7
-// POT SDO
-#define SPI2_SDO_TRIS      (TRISBbits.TRISB9)
-#define SPI2_SDO_ANSEL     (PRODL)
-#define SPI2_SDO_RPR       (RPOR1bits.RP8R)
-#define SPI2_SDO_RPRVAL    3
-// POT SCK
-#define SPI2_SCK_TRIS      (TRISBbits.TRISB12)
-#define SPI2_SCK_ANSEL     (ANSELBbits.ANSB12)
-#define SPI2_SCK_RPR       (RPOR2bits.RP12R)
-#define SPI2_SCK_RPRVAL    4
-// POT SS
-#define SPI2_SS_TRIS       (TRISBbits.TRISB13)
-#define SPI2_SS_ANSEL      (ANSELBbits.ANSB13)
-#define SPI2_SS_LAT        (LATBbits.LATB13)
-#define SPI2_SS_RPR        (RPOR3bits.RP13R)
-#define SPI2_SS_RPRVAL     5
+   
 // TX
 #define COMM_TX_TRIS      (TRISBbits.TRISB14)
 #define COMM_TX_ANSEL     (ANSELBbits.ANSB14)
@@ -90,8 +69,8 @@ extern "C" {
 // Number of controlled devices
 #define MIN_DEVICE 0
 void InitialiseBoard();
-void InitialiseSPI2();
-unsigned long WriteSPI2(unsigned long buf);
+//void InitialiseSPI2();
+//unsigned long WriteSPI2(unsigned long buf);
 unsigned long GetTickCount();
 void TickInit();
 int GetBoardID();

@@ -180,6 +180,7 @@ void InitialiseBoard()
     // Individual interrupts are enabled in device initialisation functions
     INTEnableSystemMultiVectoredInt();
 }
+#if 0
 void InitialiseSPI2()
 {
     // clear all interrupts
@@ -229,6 +230,8 @@ void InitialiseSPI2()
     SPI2CONbits.SPIFE = 0;
     SPI2CONbits.ON = 1;
 }
+#endif
+#if 0
 unsigned long WriteSPI2(unsigned long buf)
 {
 //    SPI2_SS_LAT = 0;
@@ -238,6 +241,7 @@ unsigned long WriteSPI2(unsigned long buf)
 //    SPI2_SS_LAT = 1;
     return SPI2BUF;
 }
+#endif
 //void ClrWdt(){ WDTCONSET=0x1;}
 
 /* *****************************************************************************
