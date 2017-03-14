@@ -1,6 +1,8 @@
 # PIC32Device
 Common base classes for PIC32 based projects using a simple serial command protocol.
 
+This is currently used by the AnalogAudio and BiStableRelays projects.
+
 ## Logical pins
 For each board the serial command protocol defines logical pins.
 
