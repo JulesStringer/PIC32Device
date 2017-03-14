@@ -79,10 +79,11 @@ _DefaultInterrupt - default interrupt handler which breaks in debug, but resets 
 INTEnableInterrupts
 INTEnableSystemMultiVectoredInt
 InitialiseBoard - sets up the oscillator and configures TX1 as digital output, RX1 as digital input, then enables interrupts.
-InitialiseSPI2 - initialises SPI2
-WriteSPI2 - writes an unsigned long to SPI2
 
-TODO - further abstraction as SPI2 is remappable and specific pin assignments should not be referenced in here.
+# SPI2 Class
+
+This class provides Initialise and Put functions for SPI2.
+InitialiseRPR is provided in this base class, it should be overridden in a derived class, and should configure remappable pins used by SPI2.
 
 # Defining a project for a new board
 
@@ -97,6 +98,9 @@ If needed #if should be used to conditionally compile dependent on board version
 #define CH1_MUXB_TRIS    (TRISBbits.TRISB2)
 #define CH1_MUXB_ANSEL   (ANSELBbits.ANSB2)
 #define CH1_MUXB_PORT    (PORTBbits.RB2)
+
+If SPI2 is used defines for SDI, SDO, SCK and SS should be defined.
+See AnalogAudio for an example of this.
 
 ## Define boarddef.h
 
@@ -145,3 +149,12 @@ extern "C" void RunServer()
 ### GetBoardID
 
 this should just return SWITCH_ID
+
+## SPI2
+
+If your device uses SPI2 then a class should be derived from SPI2, which should at least implement InitialiseRPR.
+InitialiseRPR must:
+1. Set the pin used for SS2 to 1
+2. Remap SDI2, SDO2, SCK2 and SS2
+3. Configure SDI2 as a digital input.
+4. Configure SDO2, SCK2, SS2 as digital outputs.
