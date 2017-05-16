@@ -33,6 +33,7 @@ SOFTWARE.
 #include "CommandParser.h"
 #include "UART1.h"
 
+#define MIN_DEVICE 0
 #define MAX_DEVICE 6
 
 class Server 

@@ -32,7 +32,7 @@ SOFTWARE.
 //#pragma config USERID = USERID          // User ID bits (User ID bits)
 // FICD
 #pragma config JTAGEN = OFF             // JTAG Enable bit (JTAG is disabled)
-#pragma config ICS = PGx2               // ICE/ICD Communication Channel Selection bits (Communicate on PGEC1/PGED1)
+#pragma config ICS = PGx2               // ICE/ICD Communication Channel Selection bits (Communicate on PGEC2/PGED2)
 // FPOR
 #pragma config BOREN = BOR3             // Brown-out Reset Enable bits (Brown-out Reset enabled in hardware; SBOREN bit disabled)
 #pragma config RETVR = OFF              // Retention Voltage Regulator Enable bit (Retention regulator is disabled)
@@ -50,7 +50,7 @@ SOFTWARE.
 #pragma config SOSCEN = ON              // Secondary Oscillator Enable bit (Secondary oscillator (SOSC) is enabled)
 #pragma config IESO = ON                // Two Speed Startup Enable bit (Two speed startup is enabled)
 #pragma config POSCMOD = OFF            // Primary Oscillator Selection bit (Primary oscillator is disabled)
-#pragma config OSCIOFNC = ON            // System Clock on CLKO Pin Enable bit (System clock is connected to CLKO/OSC2 pin)
+#pragma config OSCIOFNC = OFF           // System Clock on CLKO Pin Enable bit (System clock is connected to CLKO/OSC2 pin)
 #pragma config SOSCSEL = OFF            // Secondary Oscillator External Clock Enable bit (Crystal is used (RA4 and RB4 are controlled by SOSC))
 #pragma config FCKSM = CSECMD           // Clock Switching and Fail-Safe Clock Monitor Enable bits (Clock switching is enabled; Fail-safe clock monitor is disabled)
 // FSEC

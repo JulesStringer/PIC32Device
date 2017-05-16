@@ -107,7 +107,7 @@ int PRODL = 0;  // Dummy result for assignment
 // Section: Interface Functions                                               */
 /* ************************************************************************** */
 /* ************************************************************************** */
-
+//#include <plib.h>
 /*  A brief description of a section can be given directly below the section
     banner.
  */
@@ -156,8 +156,9 @@ void InitialiseBoard()
     SYSKEY = 0x556699AA;
     //CFGCONbits.IOLOCK = 0;   // Allow configuration to be set
     //
-    //  Oscillator setup - set to 25Mhz
+    //  Oscillator setup - set to 8Mhz
     //
+    OSCCONbits.COSC=0;
     OSCCONbits.FRCDIV = 0;
     OSCCONbits.NOSC =   0;
     OSCCONbits.OSWEN = 1;

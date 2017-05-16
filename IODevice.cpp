@@ -28,6 +28,7 @@ SOFTWARE.
  */
 
 #include "IODevice.h"
+//#include "CommandParser.h"
 
 IODevice::IODevice() 
 {
@@ -40,11 +41,5 @@ IODevice::IODevice(const IODevice& orig)
 IODevice::~IODevice() 
 {
 }
-
-void IODevice::Write(unsigned char* pszData, unsigned int nLen)
-{
-    
-}
 bool IODevice::HasChar(){ return false;}
-unsigned char IODevice::GetChar(){ return 0;}
-void IODevice::PutChar(unsigned char ch){}
+uint8_t IODevice::GetChar(){ return 0;}

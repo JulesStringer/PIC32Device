@@ -29,20 +29,23 @@ SOFTWARE.
 #ifndef IODEVICE_H
 #define	IODEVICE_H
 
+#include <stdint.h>
+
 #ifndef __PRODL_DEFINED__
 #define __PRODL_DEFINED__ 0
 extern int PRODL;
 #endif
 
-class IODevice {
+#include "OutputDevice.h"
+
+class IODevice : public OutputDevice
+{
 public:
     IODevice();
     IODevice(const IODevice& orig);
     virtual ~IODevice();
-    virtual void Write(unsigned char* pszData, unsigned int nLen);
     virtual bool HasChar();
-    virtual unsigned char GetChar();
-    virtual void PutChar(unsigned char ch);
+    virtual uint8_t GetChar();
 private:
 
 };

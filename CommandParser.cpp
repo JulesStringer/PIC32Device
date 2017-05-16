@@ -28,7 +28,6 @@ SOFTWARE.
 
 #include "CommandParser.h"
 #include "server.h"
-//#include "UART1.h"
 #include "utils.h"
 #include "IODevice.h"
 

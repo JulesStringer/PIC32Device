@@ -67,7 +67,6 @@ extern "C" {
 #define COMM_RX_ANSEL     (ANSELBbits.ANSB15)
 
 // Number of controlled devices
-#define MIN_DEVICE 0
 void InitialiseBoard();
 //void InitialiseSPI2();
 //unsigned long WriteSPI2(unsigned long buf);

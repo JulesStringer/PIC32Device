@@ -43,11 +43,11 @@ extern "C" {
 class UART1 : public IODevice
 {
 public:
-    virtual void Write(unsigned char* pszData, unsigned int nLen);
+    virtual void Write(const uint8_t* pszData, uint32_t nLen);
     virtual bool HasChar();
-    virtual unsigned char GetChar();
-    virtual void PutChar(unsigned char ch);
-    void Initialise(unsigned int nBaudRate);
+    virtual uint8_t GetChar();
+    virtual void PutChar(uint8_t ch);
+    void Initialise(uint32_t nBaudRate);
 };
 #ifdef	__cplusplus
 }

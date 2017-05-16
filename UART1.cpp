@@ -39,26 +39,40 @@ extern "C" void __attribute__ ((interrupt(IPL3SOFT),vector(_UART1_RX_VECTOR))) _
 }
 bool UART1::HasChar()
 {
+    if ( g_Rx1Head == g_Rx1Tail )
+    {
+        // try this to see if issue is interrupts
+        if (IFS0bits.U1RXIF )
+        {
+            g_Rx1Buffer[g_Rx1Tail] = U1RXREG;
+            g_Rx1Tail++;
+            IFS0bits.U1RXIF = 0;
+        }
+    }
     return g_Rx1Head != g_Rx1Tail;
 }
-unsigned char UART1::GetChar()
+uint8_t UART1::GetChar()
 {
     if ( g_Rx1Head != g_Rx1Tail)
     {
-        unsigned char ch = g_Rx1Buffer[g_Rx1Head];
+        uint8_t ch = g_Rx1Buffer[g_Rx1Head];
         g_Rx1Head++;
         return ch;
     }
+    else
+    {
+        
+    }
     return 0;
 }
-void UART1::PutChar(unsigned char ch)
+void UART1::PutChar(uint8_t ch)
 {
     U1TXREG = ch;
     while(U1STAbits.TRMT == 0);
 }
 //#define BAUDRATEREG1        ((GetPeripheralClock()+(BRG_DIV1/2*BAUDRATE1))/BRG_DIV1/BAUDRATE1-1)
 
-void UART1::Initialise(unsigned int nBaudRate)
+void UART1::Initialise(uint32_t nBaudRate)
 {
     __builtin_disable_interrupts();
     U1BRG = ((GetPeripheralClock() + (BRG_DIV1/2 * nBaudRate))/BRG_DIV1/nBaudRate -1);
@@ -67,21 +81,21 @@ void UART1::Initialise(unsigned int nBaudRate)
     U1STA = 0;
     U1MODEbits.UARTEN = 1;
     U1STAbits.UTXEN = 1;
+    U1STAbits.URXEN = 1;
     IFS0bits.U1RXIF = 0;
     
-    U1STAbits.URXEN = 1;
     
     // Set up interrupts
     //IFS0CLR = _IFS0_U1RXIE_MASK;
     IEC0SET = _IEC0_U1RXIE_MASK;
 
-//    IEC0bits.U1RXIE = 1;
+    //IEC0bits.U1RXIE = 1;
     IPC5bits.U1RXIP = 3;
     IPC5bits.U1RXIS = 0;
     __builtin_enable_interrupts();
 
 }
-void UART1::Write(unsigned char* psz, unsigned int nChars)
+void UART1::Write(const uint8_t* psz, uint32_t nChars)
 {
     while(nChars > 0)
     {
